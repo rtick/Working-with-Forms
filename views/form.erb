@@ -1,6 +1,57 @@
-<h1>State List</h1>
+<h1>My Form</h1>
 
-<p>here is a list of states...</p>
+<form method = "post" >
 
-<!-- iterate through each state in the array and put them into list items individually -->
+	<%if @params.has_key?(:submit) %>
+		<p> Form Submitted </p>
+	<%end%>
 
+	<p>
+
+		<label for = "full_name">Full Name</label><br/>
+		<input type = "text" name = "full_name" id = "full_name" value = "<%=@params[:full_name]%>">
+	</p>
+
+	<p>
+		<label for = "address">Address</label><br/>
+		<textarea rows = "2" cols = "21" name = "address" id = "address"><%=@params[:address]%></textarea>
+	</p>
+	
+	<p>
+		<label for = "city">City</label><br/>
+		<input type = "text" name = "city" id = "city" value = "<%=@params[:city]%>">
+	</p>
+	
+	<p>
+		<label> State </label> <br/>
+		<select id = "state" name = "state">
+			<% @states.each do | x | %>
+				<%if x[:id] == @params[:state]%>
+					<option value = <%= x[:id]%> selected = "selected"><%= x[:name]%></option>
+				<%else%> <option value = <%= x[:id]%>> <%= x[:id]%> </option>
+			<%end%>
+		<%end%>
+		</select>
+	</p>
+
+	<p>
+		<label for = "zip_code">Zip Code</label><br/>
+		<input type = "text" name = "zip_code" id = "zip_code" value = "<%=@params[:zip_code]%>">
+	</p>
+	
+	<p>
+		<label for="agree">
+			<% if @params.has_key?(:agree)%>
+				<input type="checkbox" value="1" id="agree" name="agree" checked>
+			<% else %> <input type="checkbox" id="agree" name="agree">
+			<% end %>
+		I Agree</label>
+	</p>
+	
+	<p>
+		<input type="submit" name="action" value="Submit">
+	</p>
+</form>
+
+<hr />
+<%= params %>

@@ -1,6 +1,11 @@
 <h1>My Form</h1>
 
 <form method = "post" >
+	<!-- fyi, you can also use
+			unless params[:submit]
+			... cleaner and more to the point
+
+	-->
 
 	<%if @params.has_key?(:submit) %>
 		<p> Form Submitted </p>
@@ -16,15 +21,21 @@
 		<label for = "address">Address</label><br/>
 		<textarea rows = "2" cols = "21" name = "address" id = "address"><%=@params[:address]%></textarea>
 	</p>
-	
+
 	<p>
 		<label for = "city">City</label><br/>
 		<input type = "text" name = "city" id = "city" value = "<%=@params[:city]%>">
 	</p>
-	
+
 	<p>
 		<label> State </label> <br/>
 		<select id = "state" name = "state">
+
+		<!-- jarp: it's better to just wrap the 'selected' in conditionals.
+		           what you are doing here is a lot of repeating
+		-->
+
+
 			<% @states.each do | x | %>
 				<%if x[:id] == @params[:state]%>
 					<option value = <%= x[:id]%> selected = "selected"><%= x[:name]%></option>
@@ -38,16 +49,20 @@
 		<label for = "zip_code">Zip Code</label><br/>
 		<input type = "text" name = "zip_code" id = "zip_code" value = "<%=@params[:zip_code]%>">
 	</p>
-	
+
 	<p>
 		<label for="agree">
+			<!-- jarp: it's better to just wrap the 'checked' in conditionals.
+			           what you are doing here is a lot of repeating
+			-->
+
 			<% if @params.has_key?(:agree)%>
 				<input type="checkbox" value="1" id="agree" name="agree" checked>
 			<% else %> <input type="checkbox" id="agree" name="agree">
 			<% end %>
 		I Agree</label>
 	</p>
-	
+
 	<p>
 		<input type="submit" name="action" value="Submit">
 	</p>

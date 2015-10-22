@@ -21,7 +21,7 @@ get '/form' do
 		state[:id] = key[s] #adding ID
 		state[:name] = value[s] #adding NAME
 		@states << state #adding state hash to states array
-	end 
+	end
 
 	@states.sort_by!{|state| state[:name]} #sorted alphabetically
 	@params = {}
@@ -42,7 +42,7 @@ post '/form' do
 		state[:id] = key[s] #adding ID
 		state[:name] = value[s] #adding NAME
 		@states << state #adding state hash to states array
-	end 
+	end
 
 	@states.sort_by!{|state| state[:name]} #sorted alphabetically
 

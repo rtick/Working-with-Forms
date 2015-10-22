@@ -33,13 +33,18 @@
 
 		<!-- jarp: it's better to just wrap the 'selected' in conditionals.
 		           what you are doing here is a lot of repeating
+
+		           what is going on here is that the select option is actually different
+		           based on if it is selected or not. Didn't notice this until I submitted the
+		           form. Alter just the bits that change will ensure consistency.
 		-->
 
 
 			<% @states.each do | x | %>
 				<%if x[:id] == @params[:state]%>
 					<option value = <%= x[:id]%> selected = "selected"><%= x[:name]%></option>
-				<%else%> <option value = <%= x[:id]%>> <%= x[:id]%> </option>
+				<%else%>
+					<option value = <%= x[:id]%>> <%= x[:id]%> </option>
 			<%end%>
 		<%end%>
 		</select>
